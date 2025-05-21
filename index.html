@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Резюме Руслана Гибадулина</title>
+  <style>
+    /* Общие стили */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header, section {
+      padding: 2rem;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    header {
+      background-color: #fff;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin: 0.5rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Layout */
+    .work, .education {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .work, .education {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    ul.skills {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.skills li {
+      background: #e3e3e3;
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    input, textarea {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input:invalid, textarea:invalid {
+      border-color: red;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Руслан Гиабадулин</h1>
+    <p>Data Analyst</p>
+    <p>Аналитик данных, стремящийся использовать данные для принятия решений и автоматизации процессов.</p>
+    <a href="#contact" class="btn">Связаться со мной</a>
+    <a href="#" class="btn">Скачать резюме</a>
+  </header>
+
+  <section class="section" id="experience">
+    <h2>Опыт работы</h2>
+    <div class="work">
+      <div>
+        <h3>Аналитик данных</h3>
+        <p><strong>ООО «Аналитика+»</strong> — 2023–2025</p>
+        <p>Создание отчетов и визуализаций, работа с большими данными, автоматизация рутинных задач.</p>
+      </div>
+      <div>
+        <h3>Стажер</h3>
+        <p><strong>School 21</strong> — 2022</p>
+        <p>Изучение основ анализа данных, участие в командных проектах.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <h2>Образование</h2>
+    <div class="education">
+      <div>
+        <h3>МГТУ «СТАНКИН»</h3>
+        <p>2022–2026 | Data Analyst</p>
+      </div>
+      <div>
+        <h3>School 21 (Сбербанк)</h3>
+        <p>2023–2025 | Data Analyst</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <h2>Навыки</h2>
+    <ul class="skills">
+      <li>Python</li>
+      <li>Pandas / NumPy</li>
+      <li>SQL</li>
+      <li>Tableau</li>
+      <li>Командная работа</li>
+      <li>Аналитическое мышление</li>
+      <li>Git</li>
+      <li>Коммуникация</li>
+    </ul>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Связаться со мной</h2>
+    <form onsubmit="return validateForm();">
+      <input type="text" name="name" placeholder="Имя" value="Руслан Гиабадулин" required />
+      <input type="email" name="email" placeholder="Email" value="Ruslan_gibadulin@gmail.com" required />
+      <textarea name="message" rows="5" placeholder="Ваше сообщение" required></textarea>
+      <button type="submit" class="btn">Отправить</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Руслан Гиабадулин
+  </footer>
+
+  <script>
+    // Валидация формы
+    function validateForm() {
+      const form = document.forms[0];
+      if (!form.name.value || !form.email.value || !form.message.value) {
+        alert('Пожалуйста, заполните все поля.');
+        return false;
+      }
+      alert('Сообщение отправлено!');
+      return false; // Заглушка, чтобы не отправлять форму
+    }
+
+    // Анимация появления секций при прокрутке
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
